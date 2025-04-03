@@ -32,6 +32,7 @@ class GuestbookForm {
 
 	private final @NotBlank String name;
 	private final @NotBlank String text;
+	private final @NotBlank String color;
 
 	/**
 	 * Creates a new {@link GuestbookForm} with the given name and text. Spring Framework will use this constructor to
@@ -42,11 +43,13 @@ class GuestbookForm {
 	 *
 	 * @param name the value to bind to {@code name}
 	 * @param text the value to bind to {@code text}
+	 * @param color the value to bind to {@code color}
 	 */
-	public GuestbookForm(String name, String text) {
+	public GuestbookForm(String name, String text, String color) {
 
 		this.name = name;
 		this.text = text;
+		this.color = color;
 	}
 
 	/**
@@ -77,7 +80,10 @@ class GuestbookForm {
 	 * @return the newly created {@link GuestbookEntry}
 	 * @throws IllegalArgumentException if you call this on an instance without the name and text actually set.
 	 */
+	public String getColor() {
+		return color;
+	}
 	GuestbookEntry toNewEntry() {
-		return new GuestbookEntry(getName(), getText());
+		return new GuestbookEntry(getName(), getText(),getColor());
 	}
 }
